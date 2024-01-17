@@ -1,8 +1,25 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
+import { APP_ROUTES } from './app.routes';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { taskReducer } from './store/reducers/task.reducer';
+import { provideHttpClient } from '@angular/common/http';
+import { provideEffects } from '@ngrx/effects';
+import { TasksEffects } from './store/effects/task/task.effects';
+import { ROOT_REDUCERS } from './core/interface/IAppState';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+  providers: [
+    provideRouter(APP_ROUTES),
+    provideAnimations(),
+    provideHttpClient(),
+    provideStore(ROOT_REDUCERS),
+    provideStoreDevtools({
+      maxAge: 25, logOnly: !isDevMode()
+    }),
+    provideEffects(TasksEffects)
+  ],
 };

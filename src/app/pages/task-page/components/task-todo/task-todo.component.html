@@ -1,0 +1,5 @@
+<div class="container">
+  <p *ngFor="let task of tasks$ | async as tasks">
+    {{task.name}}
+  </p>
+</div>
