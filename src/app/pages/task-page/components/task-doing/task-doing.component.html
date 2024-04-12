@@ -1,3 +1,15 @@
-<p>
-  task-doing works!
-</p>
+<div class="container">
+  <div class="d-flex align-items-center justify-content-between mb-2" *ngFor="let task of tasks$ | async as tasks">
+    <span>
+      {{task.name}}
+    </span>
+    <div>
+      <button mat-mini-fab color="primary" class="me-2" (click)="doneTask(task)" [matTooltip]="'Finalizar'">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="stop"></mat-icon>
+      </button>
+      <button mat-mini-fab color="primary" (click)="backTask(task)" [matTooltip]="'Voltar'">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="undo"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

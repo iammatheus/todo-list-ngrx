@@ -1,0 +1,17 @@
+<form (ngSubmit)="addTask()" [formGroup]="form">
+  <div class="d-flex align-items-center; justify-content-center form-container">
+    <mat-form-field style="width: 33.3%">
+      <mat-label>Tarefa</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="todo" selected>Todo</mat-option>
+        <mat-option value="doing">Doing</mat-option>
+        <mat-option value="done">Done</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary" class="btn-add" [disabled]="form.invalid">Adicionar</button>
+  </div>
+</form>

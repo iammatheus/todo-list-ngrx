@@ -10,21 +10,25 @@ import { Observable } from 'rxjs';
 import { selectLoading } from '../../store/selectors/task/task.selectors';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AsyncPipe, NgIf } from '@angular/common';
+import { TaskAddComponent } from './components/task-add/task-add.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-task-page',
   standalone: true,
+  templateUrl: './task-page.component.html',
+  styleUrl: './task-page.component.css',
   imports: [
-    MatCardModule,
+    AsyncPipe,
+    NgIf,
     TaskTodoComponent,
     TaskDoingComponent,
     TaskDoneComponent,
+    TaskAddComponent,
     MatProgressSpinnerModule,
-    AsyncPipe,
-    NgIf
+    MatCardModule,
+    MatButtonModule
   ],
-  templateUrl: './task-page.component.html',
-  styleUrl: './task-page.component.css'
 })
 export class TaskPageComponent {
   loading$: Observable<boolean> = new Observable()
@@ -32,7 +36,11 @@ export class TaskPageComponent {
   constructor(private store: Store<IAppState>) { }
 
   ngOnInit() {
-    this.store.dispatch(loadTasks())
+    this.loadTasks();
     this.loading$ = this.store.select(selectLoading);
+  }
+
+  loadTasks() {
+    this.store.dispatch(loadTasks())
   }
 }

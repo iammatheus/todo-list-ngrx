@@ -6,6 +6,10 @@ import { IAppState } from '../../../../core/interface/IAppState';
 import { selectListTasks } from '../../../../store/selectors/task/task.selectors';
 import { ITask } from '../../../../core/interface/ITask';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { updateTask } from '../../../../store/actions/task/task.actions';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-task-todo',
@@ -18,6 +22,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     AsyncPipe,
     JsonPipe,
     MatProgressSpinnerModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule
   ]
 })
 export class TaskTodoComponent implements OnInit {
@@ -26,6 +33,15 @@ export class TaskTodoComponent implements OnInit {
   tasks$: Observable<ITask[]> = new Observable();
 
   ngOnInit() {
-    this.tasks$ = this.store.select(selectListTasks);
+    this.tasks$ = this.store.select(selectListTasks, { statusTask: 'todo' });
+  }
+
+  startTask(taskSelected: ITask) {
+    let task: ITask = {
+      id: taskSelected.id,
+      name: taskSelected.name,
+      status: 'doing'
+    }
+    this.store.dispatch(updateTask({ task }));
   }
 }

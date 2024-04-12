@@ -1,5 +1,5 @@
 export interface ITask {
-  id: number;
+  id: string;
   name: string;
   status: string;
 }
@@ -7,4 +7,5 @@ export interface ITask {
 export interface ITaskState {
   tasks: ITask[];
   isLoading: boolean;
+  error: boolean;
 }
