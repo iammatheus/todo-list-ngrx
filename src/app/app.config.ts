@@ -5,11 +5,10 @@ import { APP_ROUTES } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { taskReducer } from './store/reducers/task.reducer';
 import { provideHttpClient } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
-import { TasksEffects } from './store/effects/task/task.effects';
-import { ROOT_REDUCERS } from './core/interface/IAppState';
+import { TasksEffects } from './store/effects/task.effects';
+import { ROOT_REDUCERS } from './store/app.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [

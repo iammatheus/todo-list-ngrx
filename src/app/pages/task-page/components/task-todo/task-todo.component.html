@@ -1,5 +1,10 @@
 <div class="container">
-  <p *ngFor="let task of tasks$ | async as tasks">
-    {{task.name}}
-  </p>
+  <div class="d-flex align-items-center justify-content-between mb-2" *ngFor="let task of tasksTodo$ | async as tasks">
+    <span>
+      {{task.name}}
+    </span>
+    <button mat-mini-fab color="primary" (click)="startTask(task)" [matTooltip]="'Iniciar'">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="play_arrow"></mat-icon>
+    </button>
+  </div>
 </div>
