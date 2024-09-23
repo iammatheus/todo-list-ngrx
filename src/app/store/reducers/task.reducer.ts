@@ -1,71 +1,83 @@
-import { createReducer, on } from "@ngrx/store";
+import { createReducer, on } from '@ngrx/store';
 import { ITaskState } from '../../core/interface/ITask';
-import { addTask, addTaskFailure, addTaskSuccess, deleteTask, deleteTaskFailure, deleteTaskSuccess, loadTasks, loadedTasksError, loadedTasksSuccess, updateTask, updateTaskFailure, updateTaskSuccess } from "../actions/task/task.actions";
+import {
+  postTask,
+  postTaskError,
+  postTaskSuccess,
+  deleteTask,
+  deleteTaskError,
+  deleteTaskSuccess,
+  getTasks,
+  getTasksError,
+  getTasksSuccess,
+  putTask,
+  putTaskError,
+  putTaskSuccess,
+} from '../actions/task.actions';
 
 const initialState: ITaskState = {
   tasks: [],
-  isLoading: false,
-  error: false,
-}
+  loading: false,
+  error: '',
+};
 
 export const taskReducer = createReducer(
   initialState,
-  on(loadTasks, (state) => {
-    return { ...state, isLoading: true };
+  on(getTasks, (state) => {
+    return { ...state, loading: true };
   }),
-  on(loadedTasksSuccess, (state, { tasks }) => {
-    return { ...state, tasks, isLoading: false };
+  on(getTasksSuccess, (state, { tasks }) => {
+    return { ...state, tasks, loading: false };
   }),
-  on(loadedTasksError, (state, { error }): ITaskState => {
-    return { ...state, tasks: [], error: true, isLoading: false };
-  }),
-
-  on(addTask, (state,) => {
-    return { ...state, isLoading: true }
-  }),
-  on(addTaskSuccess, (state, { task }): ITaskState => {
-    return { ...state, tasks: [...state.tasks, task], isLoading: false }
-  }),
-  on(addTaskFailure, (state, { error }) => {
-    return { ...state, tasks: [], error: true, isLoading: false }
+  on(getTasksError, (state, { error }): ITaskState => {
+    return { ...state, tasks: [], error, loading: false };
   }),
 
-  on(updateTask, (state, { task }) => {
-    return { ...state, task, isLoading: true, error: false }
+  on(postTask, (state) => {
+    return { ...state, loading: true };
   }),
-  on(updateTaskSuccess, (state, { task }): ITaskState => {
-    const _newdata = state.tasks.map(item => {
-      return item.id == task.id ? task : item
-    })
+  on(postTaskSuccess, (state, { task }): ITaskState => {
+    return { ...state, tasks: [...state.tasks, task], loading: false };
+  }),
+  on(postTaskError, (state, { error }) => {
+    return { ...state, tasks: [], error, loading: false };
+  }),
+
+  on(putTask, (state, { task }) => {
+    return { ...state, task, loading: true, error: '' };
+  }),
+  on(putTaskSuccess, (state, { task }): ITaskState => {
+    const _newdata = state.tasks.map((item) => {
+      return item.id == task.id ? task : item;
+    });
 
     return {
       ...state,
-      error: false,
+      error: '',
       tasks: _newdata,
-      isLoading: false,
-    }
+      loading: false,
+    };
   }),
-  on(updateTaskFailure, (state, { error }) => {
-    return { ...state, tasks: [], error: true, isLoading: false }
+  on(putTaskError, (state, { error }) => {
+    return { ...state, tasks: [], error, loading: false };
   }),
 
   on(deleteTask, (state, { task }) => {
-    return { ...state, task, isLoading: true, error: false }
+    return { ...state, task, loading: true, error: '' };
   }),
   on(deleteTaskSuccess, (state, { task }): ITaskState => {
-    const _newdata = state.tasks.filter(item => {
-      return item.id !== task.id
-    })
+    const _newdata = state.tasks.filter((item) => {
+      return item.id !== task.id;
+    });
 
     return {
       ...state,
-      error: false,
+      error: '',
       tasks: _newdata,
-      isLoading: false,
-    }
+      loading: false,
+    };
   }),
-  on(deleteTaskFailure, (state, { error }) => {
-    return { ...state, tasks: [], error: true, isLoading: false }
-  }),
-
-)
+  on(deleteTaskError, (state, { error }) => {
+    return { ...state, tasks: [], error, loading: false };
+  })
+);

@@ -6,6 +6,6 @@ export interface ITask {
 
 export interface ITaskState {
   tasks: ITask[];
-  isLoading: boolean;
-  error: boolean;
+  loading: boolean;
+  error: string;
 }

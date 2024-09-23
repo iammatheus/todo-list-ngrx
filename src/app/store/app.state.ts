@@ -7,5 +7,5 @@ export interface IAppState {
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<IAppState> = {
-  tasks: taskReducer
+  tasks: taskReducer,
 }

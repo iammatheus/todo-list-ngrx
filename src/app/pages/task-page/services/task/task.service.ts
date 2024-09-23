@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, delay, take } from 'rxjs';
-import { ITask } from '../../../core/interface/ITask';
+import { ITask } from '../../../../core/interface/ITask';
 
 @Injectable({
   providedIn: 'root',

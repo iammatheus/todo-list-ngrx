@@ -4,9 +4,9 @@ import { TaskDoneComponent } from './task-done.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { IAppState } from '../../../../store/app.state';
 import { ITask } from '../../../../core/interface/ITask';
-import { deleteTask } from '../../../../store/actions/task/task.actions';
-import { selectListTasks } from '../../../../store/selectors/task/task.selectors';
 import { of } from 'rxjs';
+import { deleteTask } from '../../../../store/actions/task.actions';
+import { selectDoneTaskList } from '../../../../store/selectors/task.selectors';
 
 describe('TaskDoneComponent', () => {
   let component: TaskDoneComponent;
@@ -52,7 +52,7 @@ describe('TaskDoneComponent', () => {
 
   it('should select tasks with status "done" from store', () => {
     component.ngOnInit();
-    expect(store.select).toHaveBeenCalledWith(selectListTasks, { statusTask: 'done' });
+    expect(store.select).toHaveBeenCalledWith(selectDoneTaskList, { statusTask: 'done' });
     component.tasks$.subscribe(res => {
       expect(res).toEqual(mockTasks);
     })

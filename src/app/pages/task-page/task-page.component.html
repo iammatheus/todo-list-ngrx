@@ -4,6 +4,9 @@
   </div>
 </div>
 
+@if(error$ | async){
+<div class="row mt-3">Error getting task list.</div>
+} @else {
 <div class="row mt-3">
   <div class="col-md-4">
     <mat-card class="p-2">
@@ -27,3 +30,4 @@
     </mat-card>
   </div>
 </div>
+}

@@ -6,9 +6,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { IAppState } from '../../../../store/app.state';
 import { ITask } from '../../../../core/interface/ITask';
-import { updateTask } from '../../../../store/actions/task/task.actions';
+import { putTask } from '../../../../store/actions/task.actions';
 import { of } from 'rxjs';
-import { selectListTasks } from '../../../../store/selectors/task/task.selectors';
+import { selectTodoTaskList } from '../../../../store/selectors/task.selectors';
 
 describe('TaskTodoComponent', () => {
   let component: TaskTodoComponent;
@@ -50,13 +50,13 @@ describe('TaskTodoComponent', () => {
   it('should update task to doing', () => {
     component.startTask(mockTask);
     mockTask.status = 'doing'
-    expect(store.dispatch).toHaveBeenCalledWith(updateTask({ task: mockTask }))
+    expect(store.dispatch).toHaveBeenCalledWith(putTask({ task: mockTask }))
   });
 
   it('should select tasks with status "todo" from store', () => {
     component.ngOnInit();
-    expect(store.select).toHaveBeenCalledWith(selectListTasks, { statusTask: 'todo' });
-    component.tasks$.subscribe(res => {
+    expect(store.select).toHaveBeenCalledWith(selectTodoTaskList, { statusTask: 'todo' });
+    component.tasksTodo$.subscribe(res => {
       expect(res).toEqual(mockTasks);
     })
   });

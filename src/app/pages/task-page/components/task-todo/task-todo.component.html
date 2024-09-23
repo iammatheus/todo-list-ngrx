@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="d-flex align-items-center justify-content-between mb-2" *ngFor="let task of tasks$ | async as tasks">
+  <div class="d-flex align-items-center justify-content-between mb-2" *ngFor="let task of tasksTodo$ | async as tasks">
     <span>
       {{task.name}}
     </span>

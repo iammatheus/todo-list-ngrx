@@ -7,7 +7,7 @@ import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
-import { TasksEffects } from './store/effects/task/task.effects';
+import { TasksEffects } from './store/effects/task.effects';
 import { ROOT_REDUCERS } from './store/app.state';
 
 export const appConfig: ApplicationConfig = {
