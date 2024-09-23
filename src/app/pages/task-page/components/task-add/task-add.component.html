@@ -1,0 +1,25 @@
+<form (ngSubmit)="postTask()" [formGroup]="form">
+  <div class="d-flex align-items-center; justify-content-center form-container">
+    <mat-form-field style="width: 33.3%">
+      <mat-label>Task name</mat-label>
+      <input matInput formControlName="name" />
+      @if (form.controls['name'].invalid) {
+      <mat-error>Task name is required</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="todo">Todo</mat-option>
+        <mat-option value="doing">Doing</mat-option>
+        <mat-option value="done">Done</mat-option>
+      </mat-select>
+      @if (form.controls['status'].invalid && form.controls['status'].touched) {
+      <mat-error>Status is required</mat-error>
+      }
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary" class="btn-add" [disabled]="form.invalid">
+      Confirm
+    </button>
+  </div>
+</form>
