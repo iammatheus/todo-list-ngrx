@@ -5,7 +5,7 @@
 </div>
 
 @if(error$ | async){
-<div class="row mt-3">Error getting task list.</div>
+<div class="row mt-3">{{error$ | async}}</div>
 } @else {
 <div class="row mt-3">
   <div class="col-md-4">
