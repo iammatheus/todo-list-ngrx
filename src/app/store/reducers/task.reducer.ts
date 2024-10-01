@@ -23,6 +23,8 @@ const initialState: ITaskState = {
 
 export const taskReducer = createReducer(
   initialState,
+
+  //get
   on(getTasks, (state) => {
     return { ...state, loading: true };
   }),
@@ -33,6 +35,8 @@ export const taskReducer = createReducer(
     return { ...state, tasks: [], error, loading: false };
   }),
 
+
+  //post
   on(postTask, (state) => {
     return { ...state, loading: true };
   }),
@@ -43,6 +47,8 @@ export const taskReducer = createReducer(
     return { ...state, tasks: [], error, loading: false };
   }),
 
+
+  //put
   on(putTask, (state, { task }) => {
     return { ...state, task, loading: true, error: '' };
   }),
@@ -62,6 +68,8 @@ export const taskReducer = createReducer(
     return { ...state, tasks: [], error, loading: false };
   }),
 
+
+  //delete
   on(deleteTask, (state, { task }) => {
     return { ...state, task, loading: true, error: '' };
   }),

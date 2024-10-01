@@ -1,3 +1,31 @@
 {
-  "task_list": []
+  "task_list": [],
+  "country_list": [
+    {
+      "id": "1",
+      "name": "Brasil"
+    },
+    {
+      "id": "2",
+      "name": "Canadá"
+    },
+    {
+      "id": "2",
+      "name": "Japão"
+    }
+  ],
+  "user_list": [
+    {
+      "id": "1",
+      "name": "Glauber"
+    },
+    {
+      "id": "2",
+      "name": "Kayk"
+    },
+    {
+      "id": "3",
+      "name": "Victor"
+    }
+  ]
 }
