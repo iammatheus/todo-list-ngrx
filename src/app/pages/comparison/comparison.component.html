@@ -1,0 +1,19 @@
+<div class="row mt-4">
+  <h1>Comparison RXJS</h1>
+  <div class="col-lg-6">
+    <mat-list>
+      <h2>Lista de Países</h2>
+      @for(country of countryList; track country) {
+      <mat-list-item>{{ country.name }}</mat-list-item>
+      }
+    </mat-list>
+  </div>
+  <div class="col-lg-6">
+    <mat-list>
+      <h2>Lista de Usuários</h2>
+      @for(user of userList; track user) {
+      <mat-list-item>{{ user.name }}</mat-list-item>
+      }
+    </mat-list>
+  </div>
+</div>

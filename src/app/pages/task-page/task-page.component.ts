@@ -4,14 +4,14 @@ import { TaskTodoComponent } from './components/task-todo/task-todo.component';
 import { TaskDoingComponent } from './components/task-doing/task-doing.component';
 import { TaskDoneComponent } from './components/task-done/task-done.component';
 import { Store } from '@ngrx/store';
-import { IAppState } from '../../core/interface/IAppState';
 import { Observable } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { TaskAddComponent } from './components/task-add/task-add.component';
 import { MatButtonModule } from '@angular/material/button';
-import { selectLoading, selectTaskListError } from '../../store/selectors/task.selectors';
 import { getTasks } from '../../store/actions/task.actions';
+import { selectLoading, selectTaskListError } from '../../store/selectors/task.selectors';
+import { IAppState } from '../../store/app.state';
 
 @Component({
   selector: 'app-task-page',
