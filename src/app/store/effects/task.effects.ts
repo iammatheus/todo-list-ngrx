@@ -26,7 +26,7 @@ export class TasksEffects {
       exhaustMap(() =>
         this.taskService.getTasks().pipe(
           exhaustMap((tasks) => of(getTasksSuccess({ tasks }))),
-          catchError((_error) => of(getTasksError({ error: 'Error getting task list.' })))
+          catchError((_error) => of(getTasksError({ error: 'Erro ao obter lista de tarefas.' })))
         )
       )
     )
@@ -40,7 +40,7 @@ export class TasksEffects {
           exhaustMap(() => {
             return of(postTaskSuccess({ task }));
           }),
-          catchError((_error) => of(postTaskError({ error: 'Error adding task.' })))
+          catchError((_error) => of(postTaskError({ error: 'Erro ao adicionar tarefa.' })))
         );
       })
     )
@@ -55,7 +55,7 @@ export class TasksEffects {
             return of(putTaskSuccess({ task }));
           }),
           catchError((_error) =>
-            of(putTaskError({ error: 'Error updating task.' }))
+            of(putTaskError({ error: 'Erro ao atualizar tarefa.' }))
           )
         );
       })
@@ -71,7 +71,7 @@ export class TasksEffects {
             return of(deleteTaskSuccess({ task }));
           }),
           catchError((_error) =>
-            of(deleteTaskError({ error: 'Error deleting task.' }))
+            of(deleteTaskError({ error: 'Erro ao deletar tarefa.' }))
           )
         );
       })
