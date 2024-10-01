@@ -26,7 +26,7 @@ export class ComparisonEffects {
         this.userService.get().pipe(
           exhaustMap((data) => of(getUserListSuccess({ data }))),
           catchError((_error) =>
-            of(getUserListError({ error: 'Error getting user list.' }))
+            of(getUserListError({ error: 'Erro ao obter lista de usuários.' }))
           )
         )
       )
@@ -40,7 +40,7 @@ export class ComparisonEffects {
         this.countryService.get().pipe(
           exhaustMap((data) => of(getCountryListSuccess({ data }))),
           catchError((_error) =>
-            of(getCountryListError({ error: 'Error getting country list.' }))
+            of(getCountryListError({ error: 'Erro ao obter lista de países.' }))
           )
         )
       )
